@@ -1,0 +1,59 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	{{ article.title }}
+{% endblock %}
+
+{% block content %}
+	<article class="container">
+
+		<div class="row">
+
+			<h5 class="header">{{ article.title }}</h5>
+			<span class="card-title">{{ article.publicationDate|date('d/m/Y') }}</span>
+			<div class="card">
+				<div class="card-image">
+					<img src="{{ article.picture }}" style="width:200px;height:200px;">
+
+
+				</div>
+				<div class="card-action">
+
+					{% for category in article.categories %}
+						{{ category.label }}{{ loop.last ? '' : ',' }}
+					{% endfor %}
+				</div>
+				<div class="card-content">
+					<p>{{ article.content }}</p>
+				</div>
+				<div class="card-action">
+					<a href="{{ path('article_edit', {'id': article.id}) }}">Modifier</a>
+					<a href="{{ path('article_remove', {'id': article.id}) }}">Supprimer</a>
+				</div>
+			</div>
+
+		</div>
+		<div class="row">
+			{{ article.comments | length}}
+			Commentaires -
+			{{ article.articleLikes | length }}
+			jaime
+			<ul class="collection">
+
+				{% for comment in article.comments %}
+					<li class="collection-item avatar">
+						<img src="/images/yuna.jpg" alt="" class="circle">
+						<span class="title">{{ comment.user.username}}</span>
+						<p>{{ comment.content }}</p>
+						<a href="#!" class="secondary-content">
+							<i class="material-icons">{{comment.commentLikes | length}}
+								jaime</i>
+						</a>
+					</li>
+				{% endfor %}
+				{{ form(form) }}
+				</ul>
+			</div>
+
+		</article>
+	{% endblock %}

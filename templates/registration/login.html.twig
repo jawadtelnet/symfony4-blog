@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Connexion{% endblock %}
+
+{% block content %}
+    <div class="container center">
+        <h1>Connexion</h1>
+      <form action="{{ path('app_login') }}" method="post">
+            <div class="input-field col s12 m6 l6 offset-m3 offset-l3">
+                <input type="text"  placeholder="Adresse email ..." required name="_username">               
+            </div>
+           
+            <div class="input-field col s12 m6 l6 offset-m3 offset-l3">               
+                <input type="password"  placeholder="Mot de passe ..." required name="_password">
+            </div>
+            <div class="input-field col s12">
+                <input type="submit" name="" class="btn btn-primary" value="Connexion">
+            </div>
+       </form>
+    </div>
+{% endblock %}
